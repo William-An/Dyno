@@ -86,14 +86,14 @@ int main( int argc, char **argv) {
     errno = 0;
     int port = strtol(argv[argc - 1], &tmp, 10);
     if (errno != 0) {
+        perror("strtol");
         fprintf(stderr, "Invalid Port number, must be number between 1024 and 65536\n");
-        fprintf(stderr, "%s", usage);
-        exit(EXIT_FAILURE);
+        fprintf(stderr, "[-] Assigning random port\n");
+        port = random() % (65536 - 1025) + 1025;
     }
-    // Check for port number
-    if (tmp != argv[argc - 1]) {
+    else if (tmp != argv[argc - 1]) {
         if (port <= 1024 || port >= 65536) {
-            fprintf(stderr, "Invalid Port number, must be number between 1024 and 65536\n");
+            fprintf(stderr, "Invalid Port number %d, must be number between 1024 and 65536\n", port);
             exit(EXIT_FAILURE);
         }
     } else {
