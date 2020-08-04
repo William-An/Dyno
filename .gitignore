@@ -1,0 +1,9 @@
+*.o
+http-root-dir/
+*.out
+*.log
+tmp
+*.tmp
+myhttpd
+core
+mycredentials.txt
